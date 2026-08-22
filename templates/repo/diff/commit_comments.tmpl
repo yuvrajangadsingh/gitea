@@ -1,4 +1,4 @@
-{{range .comments}}
+{{range .Comments}}
 
 {{$createdStr := DateUtils.TimeSince .CreatedUnix}}
 <div class="comment" id="{{.HashTag}}">
@@ -14,8 +14,8 @@
 				</span>
 			</div>
 			<div class="comment-header-right">
-				{{if and $.root.CanCommentOnCommit (eq $.root.SignedUserID .PosterID)}}
-					<div class="item context js-aria-clickable delete-comment" data-comment-id="{{.HashTag}}" data-url="{{$.root.RepoLink}}/commit/{{.CommitSHA}}/comment/{{.ID}}/delete" data-locale="{{ctx.Locale.Tr "repo.issues.delete_comment_confirm"}}">
+				{{if and ctx.RootData.CanCommentOnCommit (eq ctx.RootData.SignedUserID .PosterID)}}
+					<div class="item context js-aria-clickable delete-comment" data-comment-id="{{.HashTag}}" data-url="{{ctx.RootData.RepoLink}}/commit/{{.CommitSHA}}/comment/{{.ID}}/delete" data-locale="{{ctx.Locale.Tr "repo.issues.delete_comment_confirm"}}">
 						{{svg "octicon-trash" 14}}
 					</div>
 				{{end}}
